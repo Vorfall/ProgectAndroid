@@ -30,14 +30,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        initFields()
+       initFields()
         initFunc()
 
 
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
+      //  setSupportActionBar(mToolbar)
         creatHeader()
         createDrawer()
     }
