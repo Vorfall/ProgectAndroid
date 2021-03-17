@@ -6,10 +6,12 @@ import android.renderscript.ScriptGroup
 import android.view.LayoutInflater
 import androidx.appcompat.widget.Toolbar
 import com.example.progectandroid.databinding.ActivityMainBinding
+import com.example.progectandroid.ui.upcoming_events
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import java.sql.Driver
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
     }
@@ -35,9 +38,11 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
+    
     private fun initFunc() {
       //  setSupportActionBar(mToolbar)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.dataContanier,upcoming_events()).commit()
         creatHeader()
         createDrawer()
     }
@@ -50,10 +55,38 @@ class MainActivity : AppCompatActivity() {
            .withSelectedItem(-1)
            .withAccountHeader(mHeader)
            .addDrawerItems(
+
                PrimaryDrawerItem().withIdentifier(100)
                    .withIconTintingEnabled(true)
-                   .withName("Create group")
-                   .withSelectable(false)
+                   .withName("Сalendar")
+                   .withSelectable(false),
+               DividerDrawerItem(),
+               PrimaryDrawerItem().withIdentifier(101)
+                   .withIconTintingEnabled(true)
+                   .withName("List of events")
+                   .withSelectable(false),
+               DividerDrawerItem(),
+               PrimaryDrawerItem().withIdentifier(103)
+                   .withIconTintingEnabled(true)
+                   .withName("Create an event")
+                   .withSelectable(false),
+               DividerDrawerItem(),
+               PrimaryDrawerItem().withIdentifier(104)
+                   .withIconTintingEnabled(true)
+                   .withName("Add an event")
+                   .withSelectable(false),
+
+               DividerDrawerItem(),
+               PrimaryDrawerItem().withIdentifier(105)
+                   .withIconTintingEnabled(true)
+                   .withName("Settings")
+                   .withSelectable(false),
+               DividerDrawerItem(),
+               PrimaryDrawerItem().withIdentifier(106)
+                   .withIconTintingEnabled(true)
+                   .withName("Sign out of your account")
+                   .withSelectable(false),
+               DividerDrawerItem()
            ).build()
     }
 
